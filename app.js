@@ -1,9 +1,13 @@
 var createError = require("http-errors");
 var express = require("express");
 var logger = require("morgan");
+const mongoose = require("mongoose");
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
+
+const mongoDb = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.pig1p.mongodb.net/${process.env.DB_HOST}?retryWrites=true&w=majority`;
+mongoose.connect(mongoDb, { useUnifiedTopology: true, useNewUrlParser: true });
 
 var app = express();
 
