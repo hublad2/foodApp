@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "test": "jest",
     "start": "node ./bin/www",
     "devstart": "nodemon ./bin/www",
     "serverstart": "DEBUG=express-locallibrary-tutorial:* npm run devstart"
@@ -24,6 +25,7 @@
     "passport-local": "^1.0.0"
   },
   "devDependencies": {
+    "@shelf/jest-mongodb": "^1.2.1",
     "jest": "^26.1.0",
     "nodemon": "^2.0.4",
     "supertest": "^4.0.2"
