@@ -3,8 +3,8 @@ const request = require("supertest");
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
-/* const Recipe = require("./model/recipe");
-const recipeData = { name: "HEHEHE", password: "siema" }; */
+const Recipe = require("./models/recipe");
+const recipeData = { name: "HEHEHE", ingredients: "czosnek" };
 
 app.use(express.urlencoded({ extended: false }));
 app.use("/recipes", recipes);
@@ -27,15 +27,13 @@ test("index route works", (done) => {
         .get("/test")
         .expect({ array: ["hey"] }, done);
     });
-});
+}); */
 
-describe("User Model Test", () => {
-  // It's just so easy to connect to the MongoDB Memory Server
-  // By using mongoose.connect
+describe("Recipe Model Test", () => {
   beforeAll(async () => {
     await mongoose.connect(
       global.__MONGO_URI__,
-      { useNewUrlParser: true, useCreateIndex: true },
+      { useNewUrlParser: true, useUnifiedTopology: true },
       (err) => {
         if (err) {
           console.error(err);
@@ -45,12 +43,16 @@ describe("User Model Test", () => {
     );
   });
 
-  it("create & save user successfully", async () => {
-    const validUser = new User(userData);
-    const savedUser = await validUser.save();
-    // Object Id should be defined when successfully saved to MongoDB.
-    expect(savedUser._id).toBeDefined();
-    expect(savedUser.name).toBe(userData.name);
-    expect(savedUser.password).toBe(userData.password);
+  afterAll(async () => {
+    await mongoose.connection.close();
   });
-}); */
+
+  it("create & save recipe successfully", async () => {
+    const validRecipe = new Recipe(recipeData);
+    const savedRecipe = await validRecipe.save();
+    // Object Id should be defined when successfully saved to MongoDB.
+    expect(savedRecipe._id).toBeDefined();
+    expect(savedRecipe.name).toBe(recipeData.name);
+    expect(savedRecipe.ingredients).toBe(recipeData.ingredients);
+  });
+});
