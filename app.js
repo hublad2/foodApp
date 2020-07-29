@@ -1,7 +1,7 @@
 require("dotenv").config();
-var createError = require("http-errors");
-var express = require("express");
-var logger = require("morgan");
+/* var createError = require("http-errors"); */
+const express = require("express");
+const logger = require("morgan");
 const mongoose = require("mongoose");
 
 var indexRouter = require("./routes/index");

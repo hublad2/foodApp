@@ -8,8 +8,8 @@ router.get("/", recipe_controller.get_recipes);
 
 /* POST Create new recipe */
 router.post("/", recipe_controller.post_recipe);
-/* router.post("/", function (req, res, next) {
-  res.send("To ja");
-}); */
+
+/* GET Get edamam recipes */
+router.get("/edamam", recipe_controller.get_recipies_edamam);
 
 module.exports = router;

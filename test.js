@@ -1,3 +1,4 @@
+/* eslint-env node, jest */
 const recipes = require("./routes/recipes.js");
 const request = require("supertest");
 const express = require("express");
