@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 /* User Schema */
-const UserSchema = new User({
+const UserSchema = new Schema({
   /* Local strategy login info */
   username: { type: String },
   password: { type: String },
