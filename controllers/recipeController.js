@@ -38,6 +38,15 @@ exports.post_recipe = async (req, res, next) => {
 };
 
 exports.get_recipies_edamam = async (req, res) => {
+  /* 
+  Avaible params
+
+  - Health: ['sugar-conscious', "vegeterian"]
+  - Diet: 'balanced'
+  - Calories
+  
+  */
+
   let params = {
     keyword: req.body.keyword,
     calories: req.body.calories ? `&calories=${req.body.calories}` : "",
@@ -57,7 +66,7 @@ exports.get_recipies_edamam = async (req, res) => {
   try {
     let response = await fetch(requestUrl);
     let responseJson = await response.json();
-    res.send(responseJson);
+    res.json(responseJson);
   } catch (err) {
     res.send(err);
   }
