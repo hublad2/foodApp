@@ -3,6 +3,7 @@ require("dotenv").config();
 const express = require("express");
 const logger = require("morgan");
 const mongoose = require("mongoose");
+const cors = require("cors");
 
 var indexRouter = require("../routes/index");
 const recipesRouter = require("../routes/recipes");
@@ -11,6 +12,8 @@ var authRouter = require("../routes/auth");
 require("./passport");
 
 var app = express();
+
+app.use(cors());
 
 const mongoDb = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.pig1p.mongodb.net/${process.env.DB_HOST}?retryWrites=true&w=majority`;
 mongoose.connect(mongoDb, { useUnifiedTopology: true, useNewUrlParser: true });

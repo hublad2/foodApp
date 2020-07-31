@@ -2,7 +2,6 @@ require("dotenv").config();
 const User = require("../models/user");
 const passport = require("passport");
 const passportJWT = require("passport-jwt");
-const GoogleStrategy = require("passport-google");
 const ExtractJWT = passportJWT.ExtractJwt;
 
 const LocalStrategy = require("passport-local").Strategy;
@@ -11,17 +10,23 @@ const JWTStrategy = passportJWT.Strategy;
 passport.use(
   new LocalStrategy(
     {
-      usernameField: "username",
-      passwordField: "password",
+      usernameField: "email",
+      passwordField: "uid",
     },
-    async function (username, password, cb) {
+    async function (email, uid, cb) {
       let user;
       try {
-        user = await User.findOne({ username, password });
+        user = await User.findOne({ email, uid });
 
         if (!user) {
-          return cb(null, false, {
-            message: "Incorrect username or password",
+          let newUser = new User({
+            email: email,
+            uid: uid,
+          });
+          let savedUser = await newUser.save();
+          return cb(null, savedUser, {
+            message: "Created and logged user succesfully",
+            user: savedUser,
           });
         }
       } catch (err) {
