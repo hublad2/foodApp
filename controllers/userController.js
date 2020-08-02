@@ -1,6 +1,8 @@
 const User = require("../models/user");
 const passport = require("passport");
 const jwt = require("jsonwebtoken");
+const passport = require("passport");
+require("../src/passport");
 
 exports.user_login = (req, res, next) => {
   passport.authenticate("local", { session: false }, (err, user, info) => {
