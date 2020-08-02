@@ -8,14 +8,6 @@ const Recipe = require("./models/recipe");
 const User = require("./models/user");
 const Schedule = require("./models/schedule");
 const userData = { email: "hublad@wp.pl", uid: "2353412412" };
-const recipeData = {
-  name: "HEHEHE",
-  tags: "Śniadanie",
-  description: "Siema to ja",
-  ingredients: "czosnek",
-  preparation: "wrzuć do gara",
-  author: userData,
-};
 
 app.use(express.urlencoded({ extended: false }));
 app.use("/recipes", recipes);
@@ -78,15 +70,16 @@ describe("Recipe Model Test", () => {
       name: "HEHEHE",
       tags: "Śniadanie",
       description: "Siema to ja",
-      ingredients: "czosnek",
+      ingredients: ["czosnek"],
       preparation: "wrzuć do gara",
       author: savedUser._id,
     };
     const validRecipe = new Recipe(recipeData);
     const savedRecipe = await validRecipe.save();
+
     expect(savedRecipe._id).toBeDefined();
     expect(savedRecipe.name).toBe(recipeData.name);
-    expect(savedRecipe.ingredients).toBe(recipeData.ingredients);
+    expect(savedRecipe.ingredients[0]).toBe(recipeData.ingredients[0]);
     expect(savedRecipe.author).toBe(recipeData.author._id);
   });
 
@@ -101,7 +94,7 @@ describe("Recipe Model Test", () => {
       name: "HEHEHE",
       tags: "Śniadanie",
       description: "Siema to ja",
-      ingredients: "czosnek",
+      ingredients: ["czosnek"],
       preparation: "wrzuć do gara",
       author: savedUser._id,
     };

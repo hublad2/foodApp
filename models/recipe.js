@@ -11,7 +11,7 @@ const RecipeSchema = new Schema({
     },
   ],
   description: { type: String },
-  ingredients: { type: String, required: true },
+  ingredients: [{ type: [String], required: true }],
   preparation: { type: String },
   author: { type: Schema.Types.ObjectId, ref: "User", required: true },
 });
