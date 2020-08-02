@@ -1,5 +1,6 @@
 require("dotenv").config();
 const User = require("../models/user");
+const Schedule = require("../models/schedule");
 const passport = require("passport");
 const passportJWT = require("passport-jwt");
 const ExtractJWT = passportJWT.ExtractJwt;
@@ -24,9 +25,16 @@ passport.use(
             uid: uid,
           });
           let savedUser = await newUser.save();
+
+          let userSchedule = new Schedule({
+            author: savedUser._id,
+          });
+          let savedSchedule = await userSchedule.save();
+
           return cb(null, savedUser, {
             message: "Created and logged user succesfully",
             user: savedUser,
+            schedule: savedSchedule,
           });
         }
       } catch (err) {

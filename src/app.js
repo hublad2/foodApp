@@ -5,13 +5,14 @@ const logger = require("morgan");
 const mongoose = require("mongoose");
 const cors = require("cors");
 
-var indexRouter = require("../routes/index");
+const indexRouter = require("../routes/index");
 const recipesRouter = require("../routes/recipes");
-var authRouter = require("../routes/auth");
+const authRouter = require("../routes/auth");
+const schedulesRouter = require("../routes/schedules");
 
 require("./passport");
 
-var app = express();
+const app = express();
 
 app.use(cors());
 
@@ -26,6 +27,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use("/", indexRouter);
 app.use("/recipes", recipesRouter);
+app.use("/schedules", schedulesRouter);
 app.use("/login", authRouter);
 
 module.exports = app;

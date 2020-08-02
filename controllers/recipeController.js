@@ -22,7 +22,7 @@ exports.post_recipe = async (req, res, next) => {
         description: req.body.description,
         ingredients: req.body.ingredients,
         preparation: req.body.preparation,
-        /* author: req.body.userId, */
+        author: req.body.userId,
       });
 
       let saveRecipe = await recipe.save();
