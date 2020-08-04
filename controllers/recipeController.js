@@ -30,6 +30,7 @@ exports.post_recipe = [
           ingredients: req.body.ingredients,
           preparation: req.body.preparation,
           author: req.body.userId,
+          edamamId: req.body.edamamId,
         });
 
         let saveRecipe = await recipe.save();
@@ -52,7 +53,7 @@ exports.get_recipies_edamam = [
   Avaible params
 
   - Health: ['sugar-conscious', "vegeterian"]
-  - Diet: 'balanced'
+  - Diet: 'balanced' only one
   - Calories
   
   */

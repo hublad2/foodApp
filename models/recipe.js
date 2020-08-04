@@ -14,6 +14,7 @@ const RecipeSchema = new Schema({
   ingredients: [{ type: [String], required: true }],
   preparation: { type: String },
   author: { type: Schema.Types.ObjectId, ref: "User", required: true },
+  edamamId: { type: String },
 });
 
 module.exports = mongoose.model("Recipe", RecipeSchema);

@@ -10,6 +10,6 @@ router.get("/", recipe_controller.get_recipes);
 router.post("/", recipe_controller.post_recipe);
 
 /* GET Get edamam recipes */
-router.get("/edamam", recipe_controller.get_recipies_edamam);
+router.post("/edamam", recipe_controller.get_recipies_edamam);
 
 module.exports = router;
