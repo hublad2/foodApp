@@ -11,10 +11,11 @@ const RecipeSchema = new Schema({
     },
   ],
   description: { type: String },
-  ingredients: [{ type: [String], required: true }],
+  ingredients: [{ type: [Object], required: true }],
   preparation: { type: String },
   author: { type: Schema.Types.ObjectId, ref: "User", required: true },
-  edamamId: { type: String },
+  photo: { type: String },
+  edamamId: { type: Boolean },
 });
 
 module.exports = mongoose.model("Recipe", RecipeSchema);

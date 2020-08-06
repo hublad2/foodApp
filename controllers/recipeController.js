@@ -30,6 +30,7 @@ exports.post_recipe = [
           ingredients: req.body.ingredients,
           preparation: req.body.preparation,
           author: req.body.userId,
+          photo: req.body.photo,
           edamamId: req.body.edamamId,
         });
 
