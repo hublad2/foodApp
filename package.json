@@ -2,6 +2,9 @@
   "name": "foodapp",
   "version": "0.0.0",
   "private": true,
+  "engines": {
+    "node": "12.16.1"
+  },
   "scripts": {
     "test": "jest",
     "start": "node ./bin/www",

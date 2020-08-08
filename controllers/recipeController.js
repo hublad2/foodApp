@@ -8,7 +8,7 @@ exports.get_recipes = [
   passport.authenticate("jwt", { session: false }),
   async (req, res, next) => {
     try {
-      let recipe_list = await Recipe.find().exec();
+      let recipe_list = await Recipe.find({ author: req.body.userId }).exec();
       res.send(recipe_list);
     } catch (err) {
       return next(err);
@@ -48,7 +48,6 @@ exports.post_recipe = [
 ];
 
 exports.get_recipies_edamam = [
-  passport.authenticate("jwt", { session: false }),
   async (req, res) => {
     /* 
   Avaible params
