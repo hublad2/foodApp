@@ -20,7 +20,9 @@ exports.post_recipe = [
   passport.authenticate("jwt", { session: false }),
   async (req, res, next) => {
     if ((await Recipe.findOne({ name: req.body.name }).exec()) != null) {
-      res.send("Przepis o takiej nazwie już istnieje");
+      res.status(400).json({
+        response: "Such recipe already exists",
+      });
     } else {
       try {
         let recipe = new Recipe({
