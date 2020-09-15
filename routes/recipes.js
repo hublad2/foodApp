@@ -15,4 +15,7 @@ router.post("/edamam", recipe_controller.get_recipies_edamam);
 /* Remove recipe by name */
 router.post("/remove", recipe_controller.remove_recipe);
 
+/* Update recipe by name */
+router.post("/update", recipe_controller.update_recipe);
+
 module.exports = router;

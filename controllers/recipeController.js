@@ -90,10 +90,37 @@ exports.remove_recipe = [
   passport.authenticate("jwt", { session: false }),
   async (req, res, next) => {
     try {
-      let deletedRecipe = Recipe.findOneAndDelete({
+      let deletedRecipe = await Recipe.findOneAndDelete({
         name: req.body.name,
       }).exec();
       res.send(deletedRecipe);
+    } catch (err) {
+      return next(err);
+    }
+  },
+];
+
+exports.update_recipe = [
+  passport.authenticate("jwt", { session: false }),
+  async (req, res, next) => {
+    try {
+      let recipe = new Recipe({
+        tags: req.body.tags,
+        description: req.body.description,
+        ingredients: req.body.ingredients,
+        preparation: req.body.preparation,
+        photo: req.body.photo,
+      });
+
+      let beforeUpdateRecipe = await Recipe.findOneAndUpdate(
+        { name: req.body.name },
+        recipe
+      ).exec();
+
+      res.status(200).json({
+        response: "Recipe updated sucessfully",
+        recipe: beforeUpdateRecipe,
+      });
     } catch (err) {
       return next(err);
     }
