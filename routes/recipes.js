@@ -3,13 +3,16 @@ const router = express.Router();
 
 const recipe_controller = require("../controllers/recipeController");
 
-/* GET Get all recipes */
+/* Get user recipes */
 router.post("/user", recipe_controller.get_recipes);
 
-/* POST Create new recipe */
+/* Create new recipe */
 router.post("/", recipe_controller.post_recipe);
 
-/* GET Get edamam recipes */
+/* Get edamam recipes */
 router.post("/edamam", recipe_controller.get_recipies_edamam);
+
+/* Remove recipe by name */
+router.post("/remove", recipe_controller.remove_recipe);
 
 module.exports = router;

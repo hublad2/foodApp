@@ -85,3 +85,17 @@ exports.get_recipies_edamam = [
     }
   },
 ];
+
+exports.remove_recipe = [
+  passport.authenticate("jwt", { session: false }),
+  async (req, res, next) => {
+    try {
+      let deletedRecipe = Recipe.findOneAndDelete({
+        name: req.body.name,
+      }).exec();
+      res.send(deletedRecipe);
+    } catch (err) {
+      return next(err);
+    }
+  },
+];
