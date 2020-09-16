@@ -104,13 +104,12 @@ exports.update_recipe = [
   passport.authenticate("jwt", { session: false }),
   async (req, res, next) => {
     try {
-      let recipe = new Recipe({
-        tags: req.body.tags,
+      let recipe = {
         description: req.body.description,
         ingredients: req.body.ingredients,
         preparation: req.body.preparation,
         photo: req.body.photo,
-      });
+      };
 
       let beforeUpdateRecipe = await Recipe.findOneAndUpdate(
         { name: req.body.name },
@@ -120,6 +119,7 @@ exports.update_recipe = [
       res.status(200).json({
         response: "Recipe updated sucessfully",
         recipe: beforeUpdateRecipe,
+        updatedRecipe: recipe,
       });
     } catch (err) {
       return next(err);
