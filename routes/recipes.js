@@ -6,6 +6,9 @@ const recipe_controller = require("../controllers/recipeController");
 /* Get user recipes */
 router.post("/user", recipe_controller.get_recipes);
 
+/* Get recipe by ID */
+router.post("/get", recipe_controller.get_recipe_byId);
+
 /* Create new recipe */
 router.post("/", recipe_controller.post_recipe);
 

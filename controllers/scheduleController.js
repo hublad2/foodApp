@@ -39,7 +39,6 @@ exports.post_dateToSchedule = [
         tags: req.body.tags,
         recipe: req.body.recipeId,
       });
-
       let savedSchedule = await userSchedule.save();
 
       res.status(200).json({

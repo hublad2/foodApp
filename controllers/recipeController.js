@@ -16,6 +16,18 @@ exports.get_recipes = [
   },
 ];
 
+exports.get_recipe_byId = [
+  passport.authenticate("jwt", { session: false }),
+  async (req, res, next) => {
+    try {
+      let recipe = await Recipe.find({ _id: req.body.recipeId }).exec();
+      res.send(recipe);
+    } catch (err) {
+      return next(err);
+    }
+  },
+];
+
 exports.post_recipe = [
   passport.authenticate("jwt", { session: false }),
   async (req, res, next) => {
