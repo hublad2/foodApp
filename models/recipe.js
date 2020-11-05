@@ -12,7 +12,7 @@ const RecipeSchema = new Schema({
   ],
   description: { type: String },
   ingredients: [{ type: [Object], required: true }],
-  preparation: { type: String },
+  preparation: [{ type: [Object] }],
   author: { type: Schema.Types.ObjectId, ref: "User", required: true },
   photo: { type: String },
   edamamId: { type: Boolean },
